@@ -32,4 +32,17 @@ export type User = {
   updatedAt: string;
 };
 
+// product types
+export type Product = {
+  id: string;
+  price: string;
+  title: string;
+  image: string;
+  location?: string;
+  date: string;
+  description?: string;
+  category?: string;
+  isFeaturedProduct?: boolean;
+};
+
 export type AuthToken = string;

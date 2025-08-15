@@ -18,6 +18,9 @@ import MobileMenu from "../molecules/MobileMenu";
 // import types
 import type { AuthToken, NavItem, User } from "../../types/index";
 
+// import hooks
+import useLoginModal from "../../hooks/useLoginModal";
+
 const navItems: NavItem[] = [
   {
     name: "Chat",
@@ -39,6 +42,8 @@ const navItems: NavItem[] = [
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { openLoginModal } = useLoginModal();
 
   const token = localStorage.getItem("token") as AuthToken | null;
   const storedUser = localStorage.getItem("user");
@@ -134,13 +139,10 @@ const Navbar = () => {
           {token && user ? (
             <p>profile icon</p>
           ) : (
-            // <Link
-            //   className="font-semibold underline underline-offset-4"
-            //   to={"/login"}
-            // >
-            //   Login
-            // </Link>
-            <p className="font-semibold underline underline-offset-4 hover:cursor-pointer">
+            <p
+              onClick={openLoginModal}
+              className="font-semibold underline underline-offset-4 hover:cursor-pointer"
+            >
               Login
             </p>
           )}
